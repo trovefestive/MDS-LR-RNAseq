@@ -1,0 +1,21 @@
+# Whitelist: ignore everything, then allow code, docs, and small result files.
+# Never tracked: raw_files/, data/ (refs, indexes, paper code), BAMs, ESPRESSO/IsoQuant work dirs, logs, tmp/.
+/*
+!/.gitignore
+!/README.md
+# ANALYSIS_PLAN.md is local-only (not pushed): ignored by the /* rule above
+!/CLAUDE.md
+!/config.sh
+!/samples.tsv
+!/scripts/
+!/results/
+/results/*
+!/results/reports/
+!/results/metadata/
+!/results/01_align/
+/results/01_align/bam/
+*.bam
+*.bai
+*.mmi
+.DS_Store
+._*

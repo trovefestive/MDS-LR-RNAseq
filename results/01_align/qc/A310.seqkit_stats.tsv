@@ -1,0 +1,2 @@
+file	format	type	num_seqs	sum_len	min_len	avg_len	max_len	Q1	Q2	Q3	sum_gap	N50	N50_num	Q20(%)	Q30(%)	AvgQual	GC(%)	sum_n
+A310	FASTQ	DNA	9145749	19495874791	50	2131.7	10288	1563	2016	2524	0	2265	3248921	97	92	24.13	48.79	0

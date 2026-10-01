@@ -1,0 +1,7 @@
+sample_id	genotype	barcode	flnc_bam	flnc_fastq	batch	RIN
+V335	WT	bc03	data/flnc/V335.flnc.bam	data/flnc/V335.flnc.fastq.gz	r84050_20240510	NA
+V334	WT	bc04	data/flnc/V334.flnc.bam	data/flnc/V334.flnc.fastq.gz	r84050_20240510	NA
+A310	WT	bc05	data/flnc/A310.flnc.bam	data/flnc/A310.flnc.fastq.gz	r84050_20240510	NA
+X504	Q157R	bc06	data/flnc/X504.flnc.bam	data/flnc/X504.flnc.fastq.gz	r84050_20240510	NA
+A258	Q157R	bc07	data/flnc/A258.flnc.bam	data/flnc/A258.flnc.fastq.gz	r84050_20240510	NA
+A309	Q157R	bc08	data/flnc/A309.flnc.bam	data/flnc/A309.flnc.fastq.gz	r84050_20240510	NA

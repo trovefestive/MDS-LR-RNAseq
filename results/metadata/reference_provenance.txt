@@ -1,0 +1,7 @@
+# reference downloads — Wed Sep 30 13:00:53 EDT 2026
+GENCODE release: M39 (https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M39)
+f7e956ab58169c9b457c93bc7ecca0a2  GRCm39.primary_assembly.genome.fa
+dac667e9afbe6666d3805c5484bbb4ab  gencode.vM39.primary_assembly.annotation.gtf
+5a55d41e5e6545dddc3aca9d21b461dc  atlas.clusters.2.0.GRCm38.96.bed
+a1369ff77e451b1ef9f09081e305e69e  refTSS_v4.1_mouse_coordinate.mm39.bed
+7e2c4effe0f1f78e3b497cc77ef96d34  mm10ToMm39.over.chain.gz
