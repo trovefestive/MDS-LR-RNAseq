@@ -19,3 +19,8 @@
 *.mmi
 .DS_Store
 ._*
+# Phase 2: only small summaries + gzipped matrix (merged GTF, work dirs, IsoQuant output stay local)
+!/results/02_espresso/
+/results/02_espresso/*
+!/results/02_espresso/phase2_*.tsv
+!/results/02_espresso/merged_N2_R0_abundance.esp.gz

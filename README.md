@@ -32,14 +32,22 @@ IsoQuant (cross-check), SQANTI3, rMATS-long, and R (edgeR, DRIMSeq, IsoformSwitc
 | scripts/00_plot_theme.R | all | shared ggplot theme; WT #3B6FB6, Q157R #C8553D |
 | scripts/01a_qc_align.slurm | 1 | 6-task array: seqkit QC, minimap2 splice:hq + junc-bed, sort/index, U2af1 Q157R pileup (chr17:31867169 T>C) |
 | scripts/01b_qc_summary.slurm → 10_phase1_qc_summary.R | 1 | QC table, length/depth plots, genotype check (stops on mismatch) |
+| scripts/02a_espresso_by_chr.slurm | 2 | 21-task array: per-chromosome ESPRESSO S → C (-T 8, retries) → Q, as in Miller et al. |
+| scripts/02b_espresso_merge.slurm | 2 | merge per-chromosome abundance tables and GTFs |
+| scripts/02c_isoquant.slurm | 2 | IsoQuant 4.0.0 cross-check (FL, stranded, polyA-trimmed HiFi) |
+| scripts/11_phase2_summary.py | 2 | assignment rates, known/novel counts, A310 composition check, U2af1 junction alleles |
 
 ## Status
 Phase 0 (setup) complete 2026-09-30. See results/reports/phase0_setup.md.
 Phase 1 (QC + alignment) complete 2026-09-30. See results/reports/phase1_qc_alignment.md.
+Phase 2 (ESPRESSO assembly + IsoQuant) complete 2026-09-30. See results/reports/phase2_assembly.md.
 
 ## Key results
 - Genotypes confirmed from the reads: U2af1 Q157R (chr17:31,867,169 T>C) at 40–42% allele fraction in A258/A309/X504, and 0–0.2% in WT.
 - Mapping ≥99.94% in all samples; HiFi mismatch rate 0.21–0.22%.
+- ESPRESSO (unfiltered): 253,272 isoforms (126,317 GENCODE, 126,955 novel); 81–85% of reads assigned; novel isoforms carry 6.2–6.8% of reads in every sample.
+- The "mutant-exclusive" U2af1 isoform is GENCODE U2af1-213. It is present only in Q157R (UP, not down), and every read using its junction carries the mutant allele: the Q157R base creates a 5′ splice site in U2af1 itself (cis effect).
+- A310 (WT) has about 2× Mpo/Elane, which suggests more promyelocyte-like cells in that sort. Treat granule-gene differences with caution.
 
 ## Earlier analysis (do not reuse its signs)
 `2026_04/260327_MDS_lrp2` holds the LRP2 pipeline outputs from April 2026. Its edgeR logFC values are WT − Q157R even

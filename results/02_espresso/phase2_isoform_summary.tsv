@@ -1,0 +1,5 @@
+metric	value
+isoforms_total	253272
+isoforms_known_gencode	126317
+isoforms_novel_espresso	126955
+novel_ge2samples_ge5reads_prefilter	62848
