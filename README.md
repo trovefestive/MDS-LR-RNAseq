@@ -42,12 +42,7 @@ IsoQuant (cross-check), SQANTI3, rMATS-long, and R (edgeR, DRIMSeq, IsoformSwitc
 | scripts/03c_requant_by_chr.slurm | 3 | 21-task array: ESPRESSO_Q on filtered GTF (R2) → FSM-read filter → requant (fsm) |
 | scripts/paper_derived/remove_nonfsm_data.pl | 3 | paper's FSM-read filter (MIT), one-line bug fix |
 | scripts/03d_merge_summary.slurm → 12_phase3_summary.R | 3 | merge, read loss + primary-matrix rule, novel rule, TMM CPM, IsoQuant/LRP2 overlap, plots |
-
-## Status
-Phase 0 (setup) complete 2026-09-30. See results/reports/phase0_setup.md.
-Phase 1 (QC + alignment) complete 2026-09-30. See results/reports/phase1_qc_alignment.md.
-Phase 2 (ESPRESSO assembly + IsoQuant) complete 2026-09-30. See results/reports/phase2_assembly.md.
-Phase 3 (SQANTI3 curation + requantification) complete 2026-10-02. See results/reports/phase3_curation.md.
+| scripts/04a_nmd.slurm → 13_phase4_nmd.R | 4 | NMD known vs novel (Fisher), per-sample NMD expression share (Welch t), per-gene NMD share (edgeR diffSpliceDGE), rule-8 sign checks |
 
 ## Key results
 - Genotypes confirmed from the reads: U2af1 Q157R (chr17:31,867,169 T>C) at 40–42% allele fraction in A258/A309/X504, and 0–0.2% in WT.
@@ -55,8 +50,5 @@ Phase 3 (SQANTI3 curation + requantification) complete 2026-10-02. See results/r
 - ESPRESSO (unfiltered): 253,272 isoforms (126,317 GENCODE, 126,955 novel); 81–85% of reads assigned; novel isoforms carry 6.2–6.8% of reads in every sample.
 - The "mutant-exclusive" U2af1 isoform is GENCODE U2af1-213. It is present only in Q157R (UP, not down), and every read using its junction carries the mutant allele: the Q157R base creates a 5′ splice site in U2af1 itself (cis effect).
 - Final transcriptome (Phase 3): 171,213 isoforms = 126,317 GENCODE + 44,896 new (rules filter; ≥2 samples, ≥5 reads). New isoforms are 4.2–4.7% of expression in every sample; 36% of new coding isoforms are predicted NMD vs 14% of GENCODE. Primary counts = all reads (R2); the paper's FSM-read filter removes 15–20% of reads.
+- NMD (Phase 4): 36.0% of novel coding isoforms are predicted NMD vs 14.0% of GENCODE (OR 3.44). The NMD share of expression is the same in Q157R and WT (1.88% vs 1.91%), and no gene shows a significant NMD-share change (5,907 tested; n = 3 vs 3).
 - A310 (WT) has about 2× Mpo/Elane, which suggests more promyelocyte-like cells in that sort. Treat granule-gene differences with caution.
-
-## Earlier analysis (do not reuse its signs)
-`2026_04/260327_MDS_lrp2` holds the LRP2 pipeline outputs from April 2026. Its edgeR logFC values are WT − Q157R even
-though the files are named "Q157R_vs_WT", so every direction call in them is reversed.

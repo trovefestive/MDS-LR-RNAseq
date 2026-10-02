@@ -1,0 +1,10 @@
+structural_category	n_coding	pct_NMD
+novel_in_catalog	31006	42.14990646971554
+novel_not_in_catalog	10124	18.342552350849466
+fusion	456	26.75438596491228
+incomplete-splice_match	194	3.608247422680412
+intergenic	46	34.78260869565217
+antisense	36	13.88888888888889
+genic	33	12.121212121212121
+genic_intron	4	0
+full-splice_match	1	0

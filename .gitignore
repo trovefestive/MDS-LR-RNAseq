@@ -30,3 +30,6 @@
 !/results/03_sqanti/phase3_*
 !/results/03_sqanti/filter_*_counts.tsv
 !/results/03_sqanti/final/
+# Phase 4
+!/results/04_nmd/
+/results/04_nmd/gene_names.tsv
