@@ -39,7 +39,7 @@ make_env() {
 make_env "$ENV_ALIGN"     minimap2=2.31 samtools seqkit pbmm2 nanoplot bedtools gffread ucsc-liftover k8
 make_env "$ENV_ESPRESSO"  espresso=1.6.0 samtools
 make_env "$ENV_ISOQUANT"  isoquant=4.0.0
-make_env "$ENV_SQANTI3"   sqanti3=6.0.2
+make_env "$ENV_SQANTI3"   sqanti3=6.0.2 "setuptools<81"   # TD2 (ORF calls) imports pkg_resources, removed in setuptools>=81
 make_env "$ENV_RMATSLONG" rmats-long=2.1.0
 make_env "$ENV_R"         r-base=4.4 r-tidyverse r-data.table r-ggrepel r-ggseqlogo r-patchwork \
                           bioconductor-edger bioconductor-limma bioconductor-deseq2 bioconductor-drimseq \

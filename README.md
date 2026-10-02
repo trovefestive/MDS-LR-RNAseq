@@ -36,17 +36,25 @@ IsoQuant (cross-check), SQANTI3, rMATS-long, and R (edgeR, DRIMSeq, IsoformSwitc
 | scripts/02b_espresso_merge.slurm | 2 | merge per-chromosome abundance tables and GTFs |
 | scripts/02c_isoquant.slurm | 2 | IsoQuant 4.0.0 cross-check (FL, stranded, polyA-trimmed HiFi) |
 | scripts/11_phase2_summary.py | 2 | assignment rates, known/novel counts, A310 composition check, U2af1 junction alleles |
+| scripts/03a_sqanti3_qc.slurm | 3 | SQANTI3 6.0.2 QC (CAGE, PolyASite, polyA motifs, read counts, TD2 ORFs) |
+| scripts/03b_sqanti3_filter.slurm | 3 | ML + rules filters; primary = `P3_FILTER` (rules); restore GENCODE; per-chromosome filtered GTFs |
+| scripts/03b2_sqanti3_ml_noORF.slurm + 03_ml_remove_columns.txt | 3 | ML filter without ORF/NMD/per-sample features (comparison) |
+| scripts/03c_requant_by_chr.slurm | 3 | 21-task array: ESPRESSO_Q on filtered GTF (R2) → FSM-read filter → requant (fsm) |
+| scripts/paper_derived/remove_nonfsm_data.pl | 3 | paper's FSM-read filter (MIT), one-line bug fix |
+| scripts/03d_merge_summary.slurm → 12_phase3_summary.R | 3 | merge, read loss + primary-matrix rule, novel rule, TMM CPM, IsoQuant/LRP2 overlap, plots |
 
 ## Status
 Phase 0 (setup) complete 2026-09-30. See results/reports/phase0_setup.md.
 Phase 1 (QC + alignment) complete 2026-09-30. See results/reports/phase1_qc_alignment.md.
 Phase 2 (ESPRESSO assembly + IsoQuant) complete 2026-09-30. See results/reports/phase2_assembly.md.
+Phase 3 (SQANTI3 curation + requantification) complete 2026-10-02. See results/reports/phase3_curation.md.
 
 ## Key results
 - Genotypes confirmed from the reads: U2af1 Q157R (chr17:31,867,169 T>C) at 40–42% allele fraction in A258/A309/X504, and 0–0.2% in WT.
 - Mapping ≥99.94% in all samples; HiFi mismatch rate 0.21–0.22%.
 - ESPRESSO (unfiltered): 253,272 isoforms (126,317 GENCODE, 126,955 novel); 81–85% of reads assigned; novel isoforms carry 6.2–6.8% of reads in every sample.
 - The "mutant-exclusive" U2af1 isoform is GENCODE U2af1-213. It is present only in Q157R (UP, not down), and every read using its junction carries the mutant allele: the Q157R base creates a 5′ splice site in U2af1 itself (cis effect).
+- Final transcriptome (Phase 3): 171,213 isoforms = 126,317 GENCODE + 44,896 new (rules filter; ≥2 samples, ≥5 reads). New isoforms are 4.2–4.7% of expression in every sample; 36% of new coding isoforms are predicted NMD vs 14% of GENCODE. Primary counts = all reads (R2); the paper's FSM-read filter removes 15–20% of reads.
 - A310 (WT) has about 2× Mpo/Elane, which suggests more promyelocyte-like cells in that sort. Treat granule-gene differences with caution.
 
 ## Earlier analysis (do not reuse its signs)

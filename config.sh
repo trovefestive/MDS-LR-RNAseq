@@ -51,3 +51,8 @@ export NOVEL_MIN_SAMPLES=2         # paper: novel isoform in >=2 samples
 export NOVEL_MIN_READS=5           #        and >=5 total reads
 export FDR_CUT=0.05
 export DPROP_CUT=0.10
+
+# === Phase 3: primary SQANTI3 filter (rules | ml_noORF | ml) ===
+# rules chosen 2026-10-01: default ML filter learned coding/NMD (kept 337 novel); ML without ORF/NMD
+# features dropped 63k novel isoforms with CAGE/polyA support as good as kept ones. See phase3 report.
+export P3_FILTER=rules

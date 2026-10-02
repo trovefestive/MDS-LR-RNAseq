@@ -24,3 +24,9 @@
 /results/02_espresso/*
 !/results/02_espresso/phase2_*.tsv
 !/results/02_espresso/merged_N2_R0_abundance.esp.gz
+# Phase 3: summaries, plots, final matrices (QC/filter/quant/compare dirs stay local)
+!/results/03_sqanti/
+/results/03_sqanti/*
+!/results/03_sqanti/phase3_*
+!/results/03_sqanti/filter_*_counts.tsv
+!/results/03_sqanti/final/
