@@ -27,7 +27,27 @@ for m in filtered fsm; do
     echo "[$(date)] ${tag}: $(tail -n +2 "${Q}/${tag}_abundance.esp" | wc -l) isoforms"
 done
 for c in "${CHRS[@]}"; do tail -n +2 "${W}/${c}/filtered/${c}_N2_R2_updated.gtf"; done \
-  | awk -F'\t' '!($4 > $5)' | sort -k1,1 -k4,4n > "${Q}/R2_updated.gtf"
+  | awk -F'\t' '!($4 > $5) && !seen[$0]++' | sort -k1,1 -k4,4n > "${Q}/R2_updated.gtf"   # drop exact duplicate lines
+
+# === 1b) collapse duplicated isoform rows ===
+# ESPRESSO_Q (--read_ratio_cutoff 2) writes ~390 multi-exon isoforms without a GENCODE gene twice, splitting their
+# reads across the two records; summing the copies reproduces the pre-filter counts best (336/390 exact vs 16 for max).
+for tag in R2 fsm; do
+    python3 - "${Q}/${tag}_abundance.esp" <<'PY'
+import sys, collections
+f = sys.argv[1]; lines = open(f).read().rstrip('\n').split('\n'); head = lines[0]
+order, meta, tot = [], {}, collections.OrderedDict()
+for l in lines[1:]:
+    x = l.split('\t'); k = x[0]; v = [float(a) for a in x[3:]]
+    if k not in tot: order.append(k); meta[k] = x[1:3]; tot[k] = v
+    else: tot[k] = [a + b for a, b in zip(tot[k], v)]
+n_dup = len(lines) - 1 - len(order)
+with open(f, 'w') as o:
+    o.write(head + '\n')
+    for k in order: o.write('\t'.join([k] + meta[k] + ['%.2f' % a for a in tot[k]]) + '\n')
+print(f"{f.split('/')[-1]}: collapsed {n_dup} duplicate rows (summed); {len(order)} unique isoforms")
+PY
+done
 echo "[$(date)] R2 GTF transcripts: $(awk -F'\t' '$3=="transcript"' "${Q}/R2_updated.gtf" | wc -l)"
 
 # === 2) gffcompare vs IsoQuant and old LRP2 ===

@@ -5,8 +5,8 @@ novel	novel_in_catalog	32736
 novel	novel_not_in_catalog	11076
 novel	fusion	490
 novel	incomplete-splice_match	217
-novel	antisense	187
-novel	intergenic	110
-novel	genic	54
+novel	antisense	188
+novel	intergenic	119
+novel	genic	55
 novel	full-splice_match	15
 novel	genic_intron	11

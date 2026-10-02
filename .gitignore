@@ -33,3 +33,5 @@
 # Phase 4
 !/results/04_nmd/
 /results/04_nmd/gene_names.tsv
+# Phase 5
+!/results/05_splice/

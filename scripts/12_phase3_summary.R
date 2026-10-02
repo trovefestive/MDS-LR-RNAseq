@@ -27,6 +27,9 @@ read_esp <- function(f) {
 message("reading R2 and fsm matrices")
 r2  <- read_esp(file.path(q, "R2_abundance.esp"))
 fsm <- read_esp(file.path(q, "fsm_abundance.esp"))
+for (nm in c("r2", "fsm")) {                                 # guard: ESPRESSO_Q duplicate rows (NA-gene bug, fixed in 03b)
+  dd <- sum(duplicated(get(nm)$transcript_ID)); if (dd > 0) stop(nm, " matrix has ", dd, " duplicated transcript IDs")
+}
 loss <- tibble(sample_id = samples$sample_id,
                reads_R2  = colSums(r2[samples$sample_id]),
                reads_fsm = colSums(fsm[samples$sample_id])) |>

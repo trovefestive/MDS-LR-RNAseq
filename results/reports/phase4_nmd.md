@@ -3,13 +3,13 @@
 **Sign convention:** every difference is **Q157R − WT** (WT = reference level).
 
 ## Job
-`scripts/04a_nmd.slurm` → `scripts/13_phase4_nmd.R`, job 20757955 (final; 20757910 had identical results except the
-PDF glyphs). Input: Phase 3 final set (171,213 isoforms, R2 matrix, TMM CPM) with SQANTI3/TD2 ORF and `predicted_NMD`
+`scripts/04a_nmd.slurm` → `scripts/13_phase4_nmd.R`, job 20775375 (final, on the duplicate-corrected Phase 3 set;
+earlier runs 20757910/20757955 gave the same conclusions). Input: Phase 3 final set (171,224 isoforms, R2 matrix, TMM CPM) with SQANTI3/TD2 ORF and `predicted_NMD`
 calls. Outputs are in `results/04_nmd/`.
 
 **Rule-8 checks (both passed):**
 - All **754 mutant-exclusive isoforms** (0 reads in all WT, >0 in all Q157R, ≥5 reads) get logFC > 0 under the
-  `~genotype` design. The U2af1-213 positive control has logFC = **+8.88**.
+  `~genotype` design. The U2af1-213 positive control has logFC = **+8.86**.
 - Every significant NMD-share call must have matching logFC and Δproportion signs. There were no significant calls to
   check.
 
@@ -17,7 +17,7 @@ calls. Outputs are in `results/04_nmd/`.
 | Origin | Coding isoforms | Predicted NMD | % NMD |
 |---|---|---|---|
 | GENCODE | 108,187 | 15,185 | 14.0 |
-| Novel | 41,900 | 15,080 | **36.0** |
+| Novel | 41,900 | 15,072 | **36.0** |
 
 - **Fisher's exact test: odds ratio 3.44 (novel vs GENCODE), p < 1e-300.**
 - By novel category: NIC **42.1%** (31,006 coding), NNC 18.3% (10,124), fusion 26.8% (456).

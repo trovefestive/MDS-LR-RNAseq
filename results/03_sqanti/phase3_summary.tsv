@@ -1,9 +1,9 @@
 metric	value
 primary_matrix	R2
-isoforms_final	171213
+isoforms_final	171224
 gencode_final	126317
-novel_final	44896
-novel_within_genotype_support	43329
-novel_gt10pct_of_gene	2923
+novel_final	44907
+novel_within_genotype_support	43347
+novel_gt10pct_of_gene	2926
 novel_coding	41900
-novel_predicted_NMD	15080
+novel_predicted_NMD	15072

@@ -54,11 +54,16 @@ echo "[$(date)] keep list (${P3_FILTER} pass + restored GENCODE): $(wc -l < "$KE
 
 # === 4) filtered ESPRESSO GTF + per-chromosome split ===
 FILT=${OUT}/espresso_filtered.ensrestore.gtf
-awk 'NR==FNR{k[$1]=1; next} /^#/{print; next}
-     { if (match($0, /transcript_id "[^"]+"/)) { t=substr($0, RSTART+15, RLENGTH-16); if (t in k) print } }' \
+# gene_id "NA" (unassigned novel isoforms) -> ESPRESSO cluster ID, as for the SQANTI3 input (03a): ESPRESSO_Q
+# otherwise pools all NA-gene isoforms of a chromosome into one pseudo-gene and reports some twice (Phase 3 v1).
+awk 'BEGIN{FS=OFS="\t"} NR==FNR{k[$1]=1; next} /^#/{print; next}
+     { if (match($9, /transcript_id "[^"]+"/)) { t=substr($9, RSTART+15, RLENGTH-16); if (!(t in k)) next
+         if ($9 ~ /gene_id "NA";/) { n=split(t, p, ":"); g=p[1] ":" p[2] ":" p[3]
+                                     sub(/gene_id "NA";/, "gene_id \"" g "\";", $9) }
+         print } }' \
     "$KEEP" "${RES}/02_espresso/merged/merged_N2_R0_updated.gtf" > "${FILT}.tmp"
 mv "${FILT}.tmp" "$FILT"
-echo "[$(date)] filtered GTF transcripts: $(awk -F'\t' '$3=="transcript"' "$FILT" | wc -l)"
+echo "[$(date)] filtered GTF transcripts: $(awk -F'\t' '$3=="transcript"' "$FILT" | wc -l); gene_id NA lines left: $(grep -c 'gene_id "NA"' "$FILT" || true)"
 for c in chr1 chr2 chr3 chr4 chr5 chr6 chr7 chr8 chr9 chr10 chr11 chr12 chr13 chr14 chr15 chr16 chr17 chr18 chr19 chrX chrY; do
     awk -v c="$c" -F'\t' '$1==c' "$FILT" > "${RES}/02_espresso/work/${c}/${c}_N2_R0_updated.filtered.gtf"
 done

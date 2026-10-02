@@ -43,12 +43,14 @@ IsoQuant (cross-check), SQANTI3, rMATS-long, and R (edgeR, DRIMSeq, IsoformSwitc
 | scripts/paper_derived/remove_nonfsm_data.pl | 3 | paper's FSM-read filter (MIT), one-line bug fix |
 | scripts/03d_merge_summary.slurm → 12_phase3_summary.R | 3 | merge, read loss + primary-matrix rule, novel rule, TMM CPM, IsoQuant/LRP2 overlap, plots |
 | scripts/04a_nmd.slurm → 13_phase4_nmd.R | 4 | NMD known vs novel (Fisher), per-sample NMD expression share (Welch t), per-gene NMD share (edgeR diffSpliceDGE), rule-8 sign checks |
+| scripts/05a_splice_signatures.slurm → 14_phase5_splice_signatures.R | 5 | genotype-specific/enriched novel isoforms (edgeR diffSpliceDGE), junction classes, U2AF1 3′SS tests (+1 G/A; −3 C/T control), logos, GO ORA |
 
 ## Key results
 - Genotypes confirmed from the reads: U2af1 Q157R (chr17:31,867,169 T>C) at 40–42% allele fraction in A258/A309/X504, and 0–0.2% in WT.
 - Mapping ≥99.94% in all samples; HiFi mismatch rate 0.21–0.22%.
 - ESPRESSO (unfiltered): 253,272 isoforms (126,317 GENCODE, 126,955 novel); 81–85% of reads assigned; novel isoforms carry 6.2–6.8% of reads in every sample.
 - The "mutant-exclusive" U2af1 isoform is GENCODE U2af1-213. It is present only in Q157R (UP, not down), and every read using its junction carries the mutant allele: the Q157R base creates a 5′ splice site in U2af1 itself (cis effect).
-- Final transcriptome (Phase 3): 171,213 isoforms = 126,317 GENCODE + 44,896 new (rules filter; ≥2 samples, ≥5 reads). New isoforms are 4.2–4.7% of expression in every sample; 36% of new coding isoforms are predicted NMD vs 14% of GENCODE. Primary counts = all reads (R2); the paper's FSM-read filter removes 15–20% of reads.
+- Final transcriptome (Phase 3): 171,224 isoforms = 126,317 GENCODE + 44,907 new (rules filter; ≥2 samples, ≥5 reads). New isoforms are 4.2–4.7% of expression in every sample; 36% of new coding isoforms are predicted NMD vs 14% of GENCODE. Primary counts = all reads (R2); the paper's FSM-read filter removes 15–20% of reads.
 - NMD (Phase 4): 36.0% of novel coding isoforms are predicted NMD vs 14.0% of GENCODE (OR 3.44). The NMD share of expression is the same in Q157R and WT (1.88% vs 1.91%), and no gene shows a significant NMD-share change (5,907 tested; n = 3 vs 3).
+- **U2AF1 Q157 splice signature (Phase 5):** new 3′ splice sites gained in Q157R have G at +1 in 82.5% of cases vs 44.9% for WT-associated sites (Fisher OR 5.70, p = 2.2e-6). The S34F-type −3 C/T control shows no difference (p = 1).
 - A310 (WT) has about 2× Mpo/Elane, which suggests more promyelocyte-like cells in that sort. Treat granule-gene differences with caution.
