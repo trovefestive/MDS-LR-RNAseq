@@ -63,7 +63,9 @@ the transcript ends differ.
 | U2af1-213 (reads) | 64 | 79 | 33 | 0 | 0 | 0 |
 | U2af1-201 canonical (reads) | 372 | 482 | 260 | 344 | 213 | 652 |
 
-- The isoform is **present only in Q157R**, so it is up in the mutants. The old "down" call was the sign inversion.
+- The isoform is **present only in Q157R**, so it is up in the mutants. The old "down" label came from LRP2's naming
+  convention: in a `Q157R_vs_WT` output, Q157R is the reference, so logFC is WT relative to Q157R. The value is
+  correct (+8.80 as Q157R − WT once negated); only the direction label was misread.
 - U2af1-213 differs from the canonical transcript at a single 5′ splice site. Exon 3 ends at **chr17:31,867,169**, the
   exact base mutated by Q157R, instead of at 31,867,157. The result is a predicted in-frame 12-nt (4-aa) shorter exon,
   to be confirmed with the ORF calls in Phase 4.
