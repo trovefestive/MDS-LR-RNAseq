@@ -1,0 +1,20 @@
+## python rmats_long.py --abundance results/06_diff/inputs/final_abundance.esp --updated-gtf results/06_diff/inputs/final_updated.gtf --gencode-gtf data/ref/gencode.vM39.primary_assembly.annotation.gtf --group-1 results/06_diff/inputs/group_Q157R.txt --group-2 results/06_diff/inputs/group_WT.txt --group-1-name Q157R --group-2-name WT --out-dir results/06_diff/rmats_long --num-threads 1 --adj-pvalue 0.05 --delta-proportion 0.1 --process-top-n 100 --plot-file-type all
+## 2026-10-02T17:40:40
+## source code commit: unknown
+## significant differential isoform usage
+total significant isoforms: 866
+total genes with significant isoforms: 576
+adjusted pvalue threshold: 0.05
+delta isoform proportion threshold: 0.1
+## alternative splicing classifications between isoform pairs
+total classified isoform pairs: 100
+exon skipping: 24
+alternative 5'-splice site: 1
+alternative 3'-splice site: 10
+mutually exclusive exons: 0
+intron retention: 6
+alternative first exon: 9
+alternative last exon: 2
+complex: 31
+combinatorial: 13
+alternative endpoints: 4

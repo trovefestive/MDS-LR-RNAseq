@@ -35,3 +35,7 @@
 /results/04_nmd/gene_names.tsv
 # Phase 5
 !/results/05_splice/
+# Phase 6 (rmats_long/ and inputs/ stay local; summary sanitized copy only)
+!/results/06_diff/
+/results/06_diff/rmats_long/
+/results/06_diff/inputs/

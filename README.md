@@ -44,6 +44,9 @@ IsoQuant (cross-check), SQANTI3, rMATS-long, and R (edgeR, DRIMSeq, IsoformSwitc
 | scripts/03d_merge_summary.slurm → 12_phase3_summary.R | 3 | merge, read loss + primary-matrix rule, novel rule, TMM CPM, IsoQuant/LRP2 overlap, plots |
 | scripts/04a_nmd.slurm → 13_phase4_nmd.R | 4 | NMD known vs novel (Fisher), per-sample NMD expression share (Welch t), per-gene NMD share (edgeR diffSpliceDGE), rule-8 sign checks |
 | scripts/05a_splice_signatures.slurm → 14_phase5_splice_signatures.R | 5 | genotype-specific/enriched novel isoforms (edgeR diffSpliceDGE), junction classes, U2AF1 3′SS tests (+1 G/A; −3 C/T control), logos, GO ORA |
+| scripts/06a_rmats_long.slurm | 6 | rMATS-long (group 1 = Q157R, group 2 = WT → Δ = Q157R − WT), single-threaded |
+| scripts/06b_diff_isoforms.slurm → 15_phase6_diff_isoforms.R | 6 | edgeR DGE/DTE, DRIMSeq DTU, switches, LRP2 comparison (negated), Ybx1, dot plots, rule-8 checks |
+| scripts/06c_rmats_summary.slurm → 16_phase6_rmats_summary.R | 6 | rMATS-long import, direction checks, DRIMSeq agreement, event classes |
 
 ## Key results
 - Genotypes confirmed from the reads: U2af1 Q157R (chr17:31,867,169 T>C) at 40–42% allele fraction in A258/A309/X504, and 0–0.2% in WT.
@@ -53,4 +56,5 @@ IsoQuant (cross-check), SQANTI3, rMATS-long, and R (edgeR, DRIMSeq, IsoformSwitc
 - Final transcriptome (Phase 3): 171,224 isoforms = 126,317 GENCODE + 44,907 new (rules filter; ≥2 samples, ≥5 reads). New isoforms are 4.2–4.7% of expression in every sample; 36% of new coding isoforms are predicted NMD vs 14% of GENCODE. Primary counts = all reads (R2); the paper's FSM-read filter removes 15–20% of reads.
 - NMD (Phase 4): 36.0% of novel coding isoforms are predicted NMD vs 14.0% of GENCODE (OR 3.44). The NMD share of expression is the same in Q157R and WT (1.88% vs 1.91%), and no gene shows a significant NMD-share change (5,907 tested; n = 3 vs 3).
 - **U2AF1 Q157 splice signature (Phase 5):** new 3′ splice sites gained in Q157R have G at +1 in 82.5% of cases vs 44.9% for WT-associated sites (Fisher OR 5.70, p = 2.2e-6). The S34F-type −3 C/T control shows no difference (p = 1).
+- **Differential isoforms (Phase 6):** rMATS-long finds 866 isoform-usage changes in 576 genes, DRIMSeq 130. The 122 found by both have the same direction in every case (r = 0.90). Most switches have no gene-level change. Top switch: Cd34 (last-exon alternative 3′SS, Cd34-201 +0.22). Gene level: 97 genes DE (89 up, mostly ribosomal/OXPHOS). Results replicate the earlier LRP2 run once its effect sizes are negated (r = 0.95; U2af1-213 +8.86 vs +8.80). No Ybx1 shift.
 - A310 (WT) has about 2× Mpo/Elane, which suggests more promyelocyte-like cells in that sort. Treat granule-gene differences with caution.

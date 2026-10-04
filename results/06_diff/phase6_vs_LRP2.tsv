@@ -1,0 +1,4 @@
+level	n_shared	r_logFC	sig_new	sig_old	sig_both	sign_agree_both
+gene (DGE)	9900	0.9489055730652078	94	194	92	1
+isoform (DTE)	19700	0.9547856924512786	60	255	60	1
+isoform usage (DTU)	13061	0.7615133148889706	102	143	77	1
