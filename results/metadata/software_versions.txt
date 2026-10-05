@@ -44,3 +44,10 @@ td2	1.0.3
 psauron	1.1.3
 sqanti3 6.0.2 local patch: src/qc_output.py write_collapsed_GFF_with_CDS skips zero-length CDS intervals (CDS ending on an exon boundary crashed the split merge; job 20696734). Original kept as qc_output.py.orig.
 sqanti3 6.0.2 local patch 2: src/parsers.py extract_variables regex allows ":" in transcript IDs (TD2 ORFs of ESPRESSO isoforms were not matched; all novel = non_coding). Original kept as parsers.py.orig.
+## lr-salmon
+salmon	2.8.0
+## rmatsenv-2.7 (Phase 7 short reads)
+rmats	4.1.2
+STAR	2.7.11b
+## lr-align (Phase 7 transcript FASTA)
+gffread	0.12.9

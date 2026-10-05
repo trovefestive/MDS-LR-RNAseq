@@ -39,3 +39,8 @@
 !/results/06_diff/
 /results/06_diff/rmats_long/
 /results/06_diff/inputs/
+!/samples_shortread.tsv
+# Phase 7: comparison tables only (Salmon, STAR BAMs, rMATS-turbo output stay local)
+!/results/07_shortread/
+/results/07_shortread/*
+!/results/07_shortread/compare/

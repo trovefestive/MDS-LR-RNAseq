@@ -20,7 +20,8 @@ mm10 → mm39.
 
 ## Tools
 Versions are in `results/metadata/software_versions.txt`. Main tools: minimap2, ESPRESSO (primary assembler),
-IsoQuant (cross-check), SQANTI3, rMATS-long, and R (edgeR, DRIMSeq, IsoformSwitchAnalyzeR).
+IsoQuant (cross-check), SQANTI3, rMATS-long, and R (edgeR, DRIMSeq, IsoformSwitchAnalyzeR). Phase 7 short reads: Salmon,
+STAR, rMATS-turbo 4.1.2.
 
 ## Scripts
 | Script | Phase | Purpose |
@@ -47,6 +48,11 @@ IsoQuant (cross-check), SQANTI3, rMATS-long, and R (edgeR, DRIMSeq, IsoformSwitc
 | scripts/06a_rmats_long.slurm | 6 | rMATS-long (group 1 = Q157R, group 2 = WT → Δ = Q157R − WT), single-threaded |
 | scripts/06b_diff_isoforms.slurm → 15_phase6_diff_isoforms.R | 6 | edgeR DGE/DTE, DRIMSeq DTU, switches, LRP2 comparison (negated), Ybx1, dot plots, rule-8 checks |
 | scripts/06c_rmats_summary.slurm → 16_phase6_rmats_summary.R | 6 | rMATS-long import, direction checks, DRIMSeq agreement, event classes |
+| scripts/07a_sr_setup.slurm | 7 | expanded GTF (final 171,224 isoforms) → transcript FASTA, Salmon decoy-aware index, STAR index |
+| scripts/07b_sr_quant_align.slurm | 7 | 6-task array: Salmon (ISR), STAR to GRCm39, U2af1 Q157R genotype |
+| scripts/07c_sr_rmats_prep.slurm | 7 | 6-task array: rMATS-turbo `--task prep` per BAM |
+| scripts/07c_sr_rmats.slurm | 7 | rMATS-turbo `--task post` (b1 = Q157R, b2 = WT → ΔPSI = Q157R − WT), expanded GTF, `--novelSS` |
+| scripts/07d_sr_compare.slurm → 17_phase7_compare.R | 7 | genotype, novel-isoform detection, gene DE and isoform-usage replication, A3SS +1 G test |
 
 ## Key results
 - Genotypes confirmed from the reads: U2af1 Q157R (chr17:31,867,169 T>C) at 40–42% allele fraction in A258/A309/X504, and 0–0.2% in WT.
@@ -58,3 +64,7 @@ IsoQuant (cross-check), SQANTI3, rMATS-long, and R (edgeR, DRIMSeq, IsoformSwitc
 - **U2AF1 Q157 splice signature (Phase 5):** new 3′ splice sites gained in Q157R have G at +1 in 82.5% of cases vs 44.9% for WT-associated sites (Fisher OR 5.70, p = 2.2e-6). The S34F-type −3 C/T control shows no difference (p = 1).
 - **Differential isoforms (Phase 6):** rMATS-long finds 866 isoform-usage changes in 576 genes, DRIMSeq 130. The 122 found by both have the same direction in every case (r = 0.90). Most switches have no gene-level change. Top switch: Cd34 (last-exon alternative 3′SS, Cd34-201 +0.22). Gene level: 97 genes DE (89 up, mostly ribosomal/OXPHOS). Results replicate the earlier LRP2 run once its effect sizes are negated (r = 0.95; U2af1-213 +8.86 vs +8.80). No Ybx1 shift.
 - A310 (WT) has about 2× Mpo/Elane, which suggests more promyelocyte-like cells in that sort. Treat granule-gene differences with caution.
+- **Short-read cross-check (Phase 7; separate cohort, LSK cells, 3 WT vs 3 Q157R):** genotypes and U2af1-213 (up in Q157R)
+  replicate. Isoform-usage switches replicate (83/121 same direction, binomial p = 5e-5; Cd34 A3SS ΔPSI −0.16, FDR ≈ 0, same
+  acceptor shift). Gene-level changes, including the ribosomal/OXPHOS increase, do not (r = 0.18; 0 DE genes). Q157R-favoured
+  A3SS acceptors have +1 G more often (61% vs 56%, p = 0.013). 61% of novel isoforms are detected (GENCODE 64%).

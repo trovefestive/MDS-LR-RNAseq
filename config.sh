@@ -56,3 +56,13 @@ export DPROP_CUT=0.10
 # rules chosen 2026-10-01: default ML filter learned coding/NMD (kept 337 novel); ML without ORF/NMD
 # features dropped 63k novel isoforms with CAGE/polyA support as good as kept ones. See phase3 report.
 export P3_FILTER=rules
+
+# === Phase 7: short-read cross-check (path of the FASTQs: SR_FASTQ_DIR in untracked config.local.sh) ===
+export SR_SAMPLES=${PROJ}/samples_shortread.tsv
+export ENV_SALMON=lr-salmon                 # salmon (created by 07a)
+export ENV_RMATS_SR=rmatsenv-2.7            # existing env: rMATS 4.1.2 + STAR 2.7.11b
+export SR_REF=${PROJ}/data/ref/expanded     # transcriptome FASTA, Salmon index, STAR index (expanded GTF)
+# Library type: all 6 libraries are dUTP-stranded (86–92% of Salmon fragments ISR), but Salmon's -l A auto-detect
+# called 2/6 "IU" from its early-read sample, so the type is fixed for every sample. ISR = rMATS fr-firststrand.
+export SR_SALMON_LIBTYPE=ISR
+export SR_RMATS_LIBTYPE=fr-firststrand
