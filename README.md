@@ -53,6 +53,7 @@ STAR, rMATS-turbo 4.1.2.
 | scripts/07c_sr_rmats_prep.slurm | 7 | 6-task array: rMATS-turbo `--task prep` per BAM |
 | scripts/07c_sr_rmats.slurm | 7 | rMATS-turbo `--task post` (b1 = Q157R, b2 = WT → ΔPSI = Q157R − WT), expanded GTF, `--novelSS` |
 | scripts/07d_sr_compare.slurm → 17_phase7_compare.R | 7 | genotype, novel-isoform detection, gene DE and isoform-usage replication, A3SS +1 G test |
+| scripts/08a_summary.slurm → 18_phase8_candidates.R | 8 | isoform-switch candidates with evidence tiers (both methods, replicate separation, read support, IsoQuant, short reads, NMD) |
 
 ## Key results
 - Genotypes confirmed from the reads: U2af1 Q157R (chr17:31,867,169 T>C) at 40–42% allele fraction in A258/A309/X504, and 0–0.2% in WT.
@@ -68,3 +69,23 @@ STAR, rMATS-turbo 4.1.2.
   replicate. Isoform-usage switches replicate (83/121 same direction, binomial p = 5e-5; Cd34 A3SS ΔPSI −0.16, FDR ≈ 0, same
   acceptor shift). Gene-level changes, including the ribosomal/OXPHOS increase, do not (r = 0.18; 0 DE genes). Q157R-favoured
   A3SS acceptors have +1 G more often (61% vs 56%, p = 0.013). 61% of novel isoforms are detected (GENCODE 64%).
+- **Follow-up candidates (Phase 8):** 918 isoforms in 611 genes are significant in rMATS-long or DRIMSeq. **36 tier A genes** are
+  significant in both methods, separate all replicates in long reads, and replicate in direction in short reads, with IsoQuant
+  not contradicting. Top: Cd34 (A3SS, also by short-read rMATS-turbo), Cdc14a, Mtm1, Erbin, Crlf3, Atn1, Thada, Tcf19, Tmpo.
+  None of the tier A/B isoforms is predicted NMD; 31 of 36 tier A genes have no gene-level change.
+
+## Main figures
+| Figure | Shows |
+|---|---|
+| results/01_align/phase1_read_length_distribution, phase1_depth_mapping | read length, depth, mapping QC |
+| results/03_sqanti/phase3_novel_categories | structural categories of new isoforms |
+| results/03_sqanti/phase3_expression_known_vs_novel | expression, known vs new |
+| results/05_splice/phase5_3ss_logos | U2AF1 Q157 3′ splice-site signature (+1 G) |
+| results/06_diff/phase6_dotplot_U2af1 | U2af1-213, the cis Q157R isoform, every replicate |
+| results/06_diff/phase6_rmatslong_Cd34_structure / _abundance | top switch, Cd34 A3SS |
+| results/08_summary/phase8_lr_vs_sr_delta | long- vs short-read Δ for all candidates |
+| results/08_summary/phase8_evidence_top_genes | evidence grid, top 30 candidates |
+| results/08_summary/phase8_tierA_proportions | tier A switches, every replicate, both datasets |
+
+The candidate list with evidence columns is `results/08_summary/phase8_candidates_genes.tsv` (one row per gene) and
+`phase8_candidates_isoforms.tsv`; see `results/reports/phase8_summary.md`.

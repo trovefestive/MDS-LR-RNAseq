@@ -44,3 +44,5 @@
 !/results/07_shortread/
 /results/07_shortread/*
 !/results/07_shortread/compare/
+# Phase 8
+!/results/08_summary/
