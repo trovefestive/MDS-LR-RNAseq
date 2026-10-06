@@ -21,7 +21,7 @@ mm10 → mm39.
 ## Tools
 Versions are in `results/metadata/software_versions.txt`. Main tools: minimap2, ESPRESSO (primary assembler),
 IsoQuant (cross-check), SQANTI3, rMATS-long, and R (edgeR, DRIMSeq, IsoformSwitchAnalyzeR). Phase 7 short reads: Salmon,
-STAR, rMATS-turbo 4.1.2.
+STAR, rMATS-turbo 4.1.2. Phase 7b: LeafCutter 0.2.9 + regtools (annotation-free).
 
 ## Scripts
 | Script | Phase | Purpose |
@@ -54,6 +54,8 @@ STAR, rMATS-turbo 4.1.2.
 | scripts/07c_sr_rmats.slurm | 7 | rMATS-turbo `--task post` (b1 = Q157R, b2 = WT → ΔPSI = Q157R − WT), expanded GTF, `--novelSS` |
 | scripts/07d_sr_compare.slurm → 17_phase7_compare.R | 7 | genotype, novel-isoform detection, gene DE and isoform-usage replication, A3SS +1 G test |
 | scripts/08a_summary.slurm → 18_phase8_candidates.R | 8 | isoform-switch candidates with evidence tiers (both methods, replicate separation, read support, IsoQuant, short reads, NMD) |
+| scripts/07e_leafcutter.slurm | 7b | LeafCutter 0.2.9: regtools junctions (short reads RF; long reads XS from read flag) → clustering → `leafcutter_ds` (WT baseline → ΔPSI = Q157R − WT), both datasets |
+| scripts/07f_leafcutter_summary.slurm → 19_phase7b_leafcutter.R | 7b | coordinate + rule-8 checks, significant clusters, +1 G / −3 C tests on shared-donor acceptor pairs, short vs long, LRP2, rMATS-turbo, tier A, Cd34 |
 
 ## Key results
 - Genotypes confirmed from the reads: U2af1 Q157R (chr17:31,867,169 T>C) at 40–42% allele fraction in A258/A309/X504, and 0–0.2% in WT.
@@ -69,6 +71,10 @@ STAR, rMATS-turbo 4.1.2.
   replicate. Isoform-usage switches replicate (83/121 same direction, binomial p = 5e-5; Cd34 A3SS ΔPSI −0.16, FDR ≈ 0, same
   acceptor shift). Gene-level changes, including the ribosomal/OXPHOS increase, do not (r = 0.18; 0 DE genes). Q157R-favoured
   A3SS acceptors have +1 G more often (61% vs 56%, p = 0.013). 61% of novel isoforms are detected (GENCODE 64%).
+- **LeafCutter, annotation-free (Phase 7b):** 295 significant clusters in long reads, 168 in short reads. The U2af1-213 cis junction
+  is up in both (ΔPSI +0.12 / +0.10). Q157R-favoured acceptors (shared donor, significant clusters) have +1 G in 70.7% vs 19.8%
+  (OR 9.7, p = 5e-36, long reads) and 69.1% vs 38.9% (OR 3.5, p = 4e-5, short reads); −3 C/T control null in both. Cd34 A3SS
+  replicates a fourth time (ΔPSI −0.24 long, −0.17 short, upstream acceptor).
 - **Follow-up candidates (Phase 8):** 918 isoforms in 611 genes are significant in rMATS-long or DRIMSeq. **36 tier A genes** are
   significant in both methods, separate all replicates in long reads, and replicate in direction in short reads, with IsoQuant
   not contradicting. Top: Cd34 (A3SS, also by short-read rMATS-turbo), Cdc14a, Mtm1, Erbin, Crlf3, Atn1, Thada, Tcf19, Tmpo.
@@ -86,6 +92,7 @@ STAR, rMATS-turbo 4.1.2.
 | results/08_summary/phase8_lr_vs_sr_delta | long- vs short-read Δ for all candidates |
 | results/08_summary/phase8_evidence_top_genes | evidence grid, top 30 candidates |
 | results/08_summary/phase8_tierA_proportions | tier A switches, every replicate, both datasets |
+| results/07_leafcutter/compare/phase7b_short_vs_long_dpsi | LeafCutter ΔPSI, long vs short reads |
 
 The candidate list with evidence columns is `results/08_summary/phase8_candidates_genes.tsv` (one row per gene) and
 `phase8_candidates_isoforms.tsv`; see `results/reports/phase8_summary.md`.

@@ -51,3 +51,8 @@ rmats	4.1.2
 STAR	2.7.11b
 ## lr-align (Phase 7 transcript FASTA)
 gffread	0.12.9
+leafcutter local patch: src/Makevars -> current rstantools template (TBB/RcppParallel, StanHeaders flags, C++17); stanExports regenerated with rstantools::rstan_config() under rstan 2.32. CRAN-archived oompaBase 3.2.9 / oompaData 3.1.4 (R 4.3).
+## lr-leafcutter
+leafcutter	0.2.9 (github 2c9907e)
+regtools	1.0.0
+rstan	2.32.7

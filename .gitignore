@@ -44,5 +44,11 @@
 !/results/07_shortread/
 /results/07_shortread/*
 !/results/07_shortread/compare/
+# Phase 7b: LeafCutter comparison tables only (junctions, counts, raw ds tables stay local)
+!/results/07_leafcutter/
+/results/07_leafcutter/*
+!/results/07_leafcutter/compare/
 # Phase 8
 !/results/08_summary/
+# presentation decks stay local
+*.pptx

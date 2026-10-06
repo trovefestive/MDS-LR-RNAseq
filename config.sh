@@ -66,3 +66,7 @@ export SR_REF=${PROJ}/data/ref/expanded     # transcriptome FASTA, Salmon index,
 # called 2/6 "IU" from its early-read sample, so the type is fixed for every sample. ISR = rMATS fr-firststrand.
 export SR_SALMON_LIBTYPE=ISR
 export SR_RMATS_LIBTYPE=fr-firststrand
+
+# === Phase 7b: LeafCutter (annotation-free intron clustering; R package 0.2.x from github davidaknowles/leafcutter) ===
+export ENV_LEAFCUTTER=lr-leafcutter                       # r-rstan 2.32 (Stan models use pre-2.33 array syntax) + regtools
+export LEAFCUTTER_DIR=${PROJ}/data/tools/leafcutter       # repo clone (clustering + leafcutter_ds.R scripts)
