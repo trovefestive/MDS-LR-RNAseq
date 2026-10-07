@@ -3,6 +3,7 @@
 /*
 !/.gitignore
 !/README.md
+!/PIPELINE.md
 # ANALYSIS_PLAN.md is local-only (not pushed): ignored by the /* rule above
 !/CLAUDE.md
 !/config.sh

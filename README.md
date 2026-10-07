@@ -1,6 +1,7 @@
 # PacBio long-read RNA-seq — U2af1 Q157R vs WT (mouse LK)
 
 The detailed analysis plan is kept locally and is not part of this repository. Phase reports are in `results/reports/`.
+A step-by-step guide to the pipeline (what each step does, why, inputs/outputs, traps) is in [PIPELINE.md](PIPELINE.md).
 
 ## Samples
 Kinnex full-length RNA, Revio run r84050_20240510; FLNC reads delivered by the core (skera → lima → refine --require-polya).
@@ -54,6 +55,7 @@ STAR, rMATS-turbo 4.1.2. Phase 7b: LeafCutter 0.2.9 + regtools (annotation-free)
 | scripts/07c_sr_rmats.slurm | 7 | rMATS-turbo `--task post` (b1 = Q157R, b2 = WT → ΔPSI = Q157R − WT), expanded GTF, `--novelSS` |
 | scripts/07d_sr_compare.slurm → 17_phase7_compare.R | 7 | genotype, novel-isoform detection, gene DE and isoform-usage replication, A3SS +1 G test |
 | scripts/08a_summary.slurm → 18_phase8_candidates.R | 8 | isoform-switch candidates with evidence tiers (both methods, replicate separation, read support, IsoQuant, short reads, NMD) |
+| scripts/90_build_deck.js | — | summary slide deck (pptxgenjs) from the phase figures; see its header for usage |
 | scripts/07e_leafcutter.slurm | 7b | LeafCutter 0.2.9: regtools junctions (short reads RF; long reads XS from read flag) → clustering → `leafcutter_ds` (WT baseline → ΔPSI = Q157R − WT), both datasets |
 | scripts/07f_leafcutter_summary.slurm → 19_phase7b_leafcutter.R | 7b | coordinate + rule-8 checks, significant clusters, +1 G / −3 C tests on shared-donor acceptor pairs, short vs long, LRP2, rMATS-turbo, tier A, Cd34 |
 
