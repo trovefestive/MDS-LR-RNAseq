@@ -53,3 +53,5 @@
 !/results/08_summary/
 # presentation decks stay local
 *.pptx
+# gene-panel queries
+!/results/09_gene_panel/
